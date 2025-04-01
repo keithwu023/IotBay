@@ -37,6 +37,9 @@
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String confirmPassword = request.getParameter("confirmPassword");
+                String firstName = request.getParameter("firstName");
+                String lastName = request.getParameter("lastName");
+                String phone = request.getParameter("phone");
 
                 // Simple validation
                 if (!password.equals(confirmPassword)) {
@@ -53,7 +56,6 @@
                     application.setAttribute("userDatabase", userDatabase);
 
                     // Auto-login after registration
-                    session.setAttribute("userEmail", email);
                     response.sendRedirect("index.jsp");
                 }
             }

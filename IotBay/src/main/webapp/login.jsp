@@ -21,7 +21,7 @@
                 <a href="index.jsp">Home</a>
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
-                <% if (session.getAttribute("userEmail") != null) { %>
+                <% if (session.getAttribute("loggedInUser") != null) { %>
                 <a href="logout.jsp">Logout</a>
                 <% } %>
             </div>
@@ -77,6 +77,7 @@
                 // Check against user database
                 if (userDatabase.containsKey(email) && userDatabase.get(email).equals(password)) {
                     session.setAttribute("userEmail", email);
+                    session.setAttribute("userName", email.split("@")[0]);
                     response.sendRedirect("index.jsp");
                 } else {
                     request.setAttribute("error", "Invalid email or password. Please try again.");

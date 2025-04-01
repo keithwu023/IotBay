@@ -1,4 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
+
+<%
+    // Retrieve the logged-in user object from session
+    String userEmail = (String) session.getAttribute("userEmail");
+    String userName = (String) session.getAttribute("userName");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +39,23 @@
         <p>Your premier destination for IoT devices and smart technology solutions.</p>
     </section>
 </main>
+<div>
+    <h2>User Details:</h2>
+    <%
+        if (userEmail == null) {
+    %>
+    <p>No user logged in.</p>
+    <%
+    } else {
+    %>
+    <ul>
+        <li>Username:<%= userName %></li>
+        <li>Email:<%= userEmail %></li>
+    </ul>
+    <%
+        }
+    %>
+</div>
 
 <footer>
     <div class="container">
