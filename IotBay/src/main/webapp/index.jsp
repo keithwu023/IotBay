@@ -27,7 +27,7 @@
 
 <main class="container">
     <section class="hero">
-        <h1>Welcome to IoT Bay</h1>
+        <h1>Welcome to IoT Bay,<%=session.getAttribute("email")%></h1>
         <p>Your premier destination for IoT devices and smart technology solutions.</p>
     </section>
 </main>

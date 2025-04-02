@@ -18,5 +18,9 @@
     </button>
 </div>
 
+<div class="user profile">
+
+</div>
+
 </body>
 </html>
