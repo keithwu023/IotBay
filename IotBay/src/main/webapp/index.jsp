@@ -35,10 +35,17 @@
 
 <main class="container">
     <section class="hero">
-        <h1>Welcome to IoT Bay</h1>
+        <h1>Welcome to our Internet of Things Store - IoT Bay</h1>
         <p>Your premier destination for IoT devices and smart technology solutions.</p>
     </section>
+
+    <div class="Image">
+        <img src="images/online-store.png" alt="Online Store Image" class="online-store">
+    </div>
 </main>
+
+
+
 <div>
     <h2>User Details:</h2>
     <%
@@ -59,7 +66,7 @@
 
 <footer>
     <div class="container">
-        <p>&copy; 2023 IoT Bay. All rights reserved.</p>
+        <p>&copy; 2025 IoT Bay. All rights reserved.</p>
     </div>
 </footer>
 </body>

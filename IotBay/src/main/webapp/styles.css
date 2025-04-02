@@ -221,7 +221,7 @@ nav {
 /* ===== HERO SECTION ===== */
 .hero {
     text-align: center;
-    padding: 60px 0;
+    padding: 10px 0;
 }
 
 .hero h1 {
@@ -266,4 +266,17 @@ footer {
     background-color: rgba(46, 204, 113, 0.1);
     border-radius: 5px;
     border-left: 3px solid #2ecc71;
+}
+
+.Image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.online-store {
+    height: 500px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
