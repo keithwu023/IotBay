@@ -29,10 +29,10 @@
     <section class="hero">
         <h1>Welcome to IoT Bay
             <%
-                String userEmail = (String) session.getAttribute("userName");
-                if (userEmail != null) {
+                String userName = (String) session.getAttribute("userName");
+                if (userName != null) {
             %>,
-            <%= userEmail %>
+            <%= userName %>
             <%
                 }
             %>
