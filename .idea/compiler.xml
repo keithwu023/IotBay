@@ -9,5 +9,8 @@
         <module name="IotBay" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="IotBay" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
