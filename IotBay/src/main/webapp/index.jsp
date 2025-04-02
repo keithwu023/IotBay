@@ -27,7 +27,16 @@
 
 <main class="container">
     <section class="hero">
-        <h1>Welcome to IoT Bay,<%=session.getAttribute("userEmail")%></h1>
+        <h1>Welcome to IoT Bay
+            <%
+                String userEmail = (String) session.getAttribute("userName");
+                if (userEmail != null) {
+            %>,
+            <%= userEmail %>
+            <%
+                }
+            %>
+        </h1>
         <p>Your premier destination for IoT devices and smart technology solutions.</p>
     </section>
 </main>
