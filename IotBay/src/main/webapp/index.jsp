@@ -27,7 +27,11 @@
 
 <main class="container">
     <section class="hero">
-        <h1>Welcome to IoT Bay,<%=session.getAttribute("userEmail")%></h1>
+        <% if (session.getAttribute("userEmail") != null) { %>
+        <h1>Welcome to IoT Bay, <%=session.getAttribute("userEmail")%></h1>
+        <%} else{ %>
+        <h1>Welcome to IoT Bay</h1>
+        <%}%>
         <p>Your premier destination for IoT devices and smart technology solutions.</p>
     </section>
 </main>
