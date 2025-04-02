@@ -34,7 +34,6 @@
         <%-- Handle form submission --%>
         <%
             if ("POST".equalsIgnoreCase(request.getMethod())) {
-                //String firstname = request.getParameter("firstName");
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String confirmPassword = request.getParameter("confirmPassword");
@@ -55,7 +54,6 @@
 
                     // Auto-login after registration
                     session.setAttribute("userEmail", email);
-                    //session.setAttribute("firstName", firstname);
                     response.sendRedirect("index.jsp");
                 }
             }

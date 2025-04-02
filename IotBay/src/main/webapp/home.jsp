@@ -1,8 +1,7 @@
 <%@page import="model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    User user = (user)session.getAttribute("currentUser");
-%>
+
+
 <html>
 <head>
     <title>Home</title>
