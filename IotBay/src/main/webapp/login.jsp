@@ -24,6 +24,7 @@
                 <% if (session.getAttribute("loggedInUser") != null) { %>
                 <a href="logout.jsp">Logout</a>
                 <% } %>
+                <img src="images/search-icon.png" alt="Search"/></a>
             </div>
         </nav>
     </div>

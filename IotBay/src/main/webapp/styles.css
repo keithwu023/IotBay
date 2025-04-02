@@ -70,6 +70,11 @@ nav {
     transition: all 0.3s;
 }
 
+.nav-links img {
+    width: 25px;
+    height: auto;
+}
+
 .nav-links a:hover {
     color: var(--primary);
 }

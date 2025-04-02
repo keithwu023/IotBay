@@ -22,6 +22,7 @@
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
                 <a href="logout.jsp">Logout</a>
+                <img src="images/search-icon.png" alt="Search"/></a>
             </div>
         </nav>
     </div>
