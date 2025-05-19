@@ -1,23 +1,15 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class OrderItem implements Serializable {
-    private int orderItemId;
+public class Order implements Serializable {
     private int orderId;
-    private int deviceId;
-    private int quantity;
-    private double unitPrice;
+    private String userEmail;
+    private Date orderDate;
+    private String status;
 
-    // Get and Update
-    public int getOrderItemId() {
-        return orderItemId;
-    }
-
-    public void setOrderItemId(int orderItemId) {
-        this.orderItemId = orderItemId;
-    }
-
+    // Getters and setters
     public int getOrderId() {
         return orderId;
     }
@@ -26,27 +18,27 @@ public class OrderItem implements Serializable {
         this.orderId = orderId;
     }
 
-    public int getDeviceId() {
-        return deviceId;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setDeviceId(int deviceId) {
-        this.deviceId = deviceId;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public double getUnitPrice() {
-        return unitPrice;
+    public String getStatus() {
+        return status;
     }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

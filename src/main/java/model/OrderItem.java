@@ -1,51 +1,52 @@
 package model;
 
-public class User {
-    private int id;
-    private String email;
-    private String password;
-    private String name;
-    private userType userType;
+import java.io.Serializable;
 
-    // Get and Update field
+public class OrderItem implements Serializable {
+    private int orderItemId;
+    private int orderId;
+    private int deviceId;
+    private int quantity;
+    private double unitPrice;
 
-    public int getId() {
-        return id;
+    // Getters and setters
+    public int getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderItemId(int orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
-    public String getEmail() {
-        return email;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public String getPassword() {
-        return password;
+    public int getDeviceId() {
+        return deviceId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
     }
 
-    public String getName() {
-        return name;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public userType getUserType() {
-        return userType;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUserType(userType userType) {
-        this.userType = userType;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }
