@@ -88,6 +88,26 @@ public class DeviceDBManager {
         return devices;
     }
 
+    // READ - Get device by ID
+    public Device getDeviceById(int deviceId) throws SQLException {
+        String sql = "SELECT * FROM Devices WHERE DeviceId = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, deviceId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Device d = new Device();
+                    d.setDeviceId(rs.getInt("DeviceId"));
+                    d.setDeviceName(rs.getString("DeviceName"));
+                    d.setDeviceType(rs.getString("DeviceType"));
+                    d.setUnitPrice(rs.getDouble("UnitPrice"));
+                    d.setQuantity(rs.getInt("Quantity"));
+                    return d;
+                }
+            }
+        }
+        return null;
+    }
+
     // UPDATE - Update an existing device’s details
     public void updateDevice(Device device) throws SQLException {
         String sql = "UPDATE Devices SET DeviceName = ?, DeviceType = ?, UnitPrice = ?, Quantity = ? WHERE DeviceId = ?";

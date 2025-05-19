@@ -20,7 +20,11 @@
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
                 <a href="staffLogin.jsp">Staff Login</a>
+                <a href="createOrder.jsp">Create Order</a>
+                <a href="orderList.jsp">Order History</a>
                 <% } else { %>
+                <a href="createOrder.jsp">Create Order</a>
+                <a href="orderList.jsp">Order History</a>
                 <a href="deviceList.jsp">Device List</a>
                 <a href="logout.jsp">Logout</a>
                 <% } %>
@@ -54,7 +58,7 @@
 
 <footer>
     <div class="container">
-        <p>&copy; 2023 IoT Bay. All rights reserved.</p>
+        <p>&copy; 2025 IoT Bay. All rights reserved.</p>
     </div>
 </footer>
 </body>

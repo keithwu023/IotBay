@@ -7,11 +7,13 @@ public class DAO {
     private Connection connection;
     private DBManager userManager;
     private DeviceDBManager deviceManager;
+    private OrderDBManager orderManager;
 
     public DAO() throws SQLException {
         connection = new DBConnector().getConnection();
         userManager = new DBManager(connection);           // your existing DBManager for users
         deviceManager = new DeviceDBManager(connection);   // your DeviceDBManager for devices
+        orderManager = new OrderDBManager(connection);
     }
 
     public Connection getConnection() {
@@ -24,6 +26,10 @@ public class DAO {
 
     public DeviceDBManager getDeviceManager() {
         return deviceManager;
+    }
+
+    public OrderDBManager getOrderManager() {
+        return orderManager;
     }
 
     public void close() {
