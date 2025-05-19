@@ -1,59 +1,77 @@
 package model.dao;
 
-import java.sql.*;
 import model.User;
+import model.userType;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DBManager {
-    private final Statement statement;
     private final Connection connection;
 
-    public DBManager(Connection connection) throws SQLException {
+    // Constructor to receive an active database connection
+    public DBManager(Connection connection) {
         this.connection = connection;
-        statement = connection.createStatement();
     }
 
-    public int getUserCount() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from user");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getInt(1);
-    }
-    public String getUserName(int userId) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("select username from user where id = ?");
-        preparedStatement.setInt(1, userId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        return resultSet.getString(1);
-    }
-    //CREATE
-    public User addUser(User user) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO USERS (Email, Password, Genre) VALUES (?, ?, ?)");
-        preparedStatement.setString(1, user.getEmail());
-        preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setString(3, user.getGenre());
-        preparedStatement.executeUpdate();
+    // Method to validate a staff user from the STAFF table
+    public User validateStaffUser(String email, String password) throws SQLException {
+        String sql = "SELECT StaffId, StaffName, Email, Password, Position FROM STAFF WHERE Email = ? AND Password = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);     // Set email in SQL query
+            stmt.setString(2, password);  // Set password in SQL query
 
-        preparedStatement = connection.prepareStatement("SELECT MAX(UserId) FROM USERS");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
-        int userId = resultSet.getInt(1);
-        user.setId(userId);
-        return user;
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // If user is found, populate User object
+                    User user = new User();
+                    user.setId(rs.getInt("StaffId"));
+                    user.setEmail(rs.getString("Email"));
+                    user.setPassword(rs.getString("Password"));
+                    user.setName(rs.getString("StaffName"));
+
+                    user.setUserType(userType.Staff); // Set user type to Staff
+
+                    return user;
+                } else {
+                    return null; // No matching record found
+                }
+            }
+        }
     }
-    //UPDATE
-    public void updateUser(User user) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE USERS SET Email = ?, Password = ?, Genre = ? WHERE UserId = ?");
-        preparedStatement.setString(1, user.getEmail());
-        preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setString(3, user.getGenre());
-        preparedStatement.setInt(4, user.getId());
-        preparedStatement.executeUpdate();
-    }
-    //DELETE
-    public void removeUser(User user) throws SQLException {
-        System.out.println("ID: " + user.getId());
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM USERS WHERE UserId = ?");
-        preparedStatement.setInt(1, user.getId());
-        preparedStatement.executeUpdate();
+
+    // General method to validate a user from the USERS table
+    public User validateUser(String email, String password) throws SQLException {
+        String sql = "SELECT UserId, Email, Password, Role FROM Users WHERE Email = ? AND Password = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);     // Set email in SQL query
+            stmt.setString(2, password);  // Set password in SQL query
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // If user is found, populate User object
+                    User user = new User();
+                    user.setId(rs.getInt("UserId"));
+                    user.setEmail(rs.getString("Email"));
+                    user.setPassword(rs.getString("Password"));
+
+                    // Determine user role and set userType accordingly
+                    String role = rs.getString("Role");
+                    if ("Staff".equalsIgnoreCase(role)) {
+                        user.setUserType(userType.Staff);
+                    } else if ("Customer".equalsIgnoreCase(role)) {
+                        user.setUserType(userType.Customer);
+                    } else {
+                        user.setUserType(userType.Unknown);
+                    }
+
+                    return user;
+                } else {
+                    return null; // No match found
+                }
+            }
+        }
     }
 }

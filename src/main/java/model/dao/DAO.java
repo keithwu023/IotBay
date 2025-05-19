@@ -1,0 +1,38 @@
+package model.dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class DAO {
+    private Connection connection;
+    private DBManager userManager;
+    private DeviceDBManager deviceManager;
+
+    public DAO() throws SQLException {
+        connection = new DBConnector().getConnection();
+        userManager = new DBManager(connection);           // your existing DBManager for users
+        deviceManager = new DeviceDBManager(connection);   // your DeviceDBManager for devices
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public DBManager getUserManager() {
+        return userManager;
+    }
+
+    public DeviceDBManager getDeviceManager() {
+        return deviceManager;
+    }
+
+    public void close() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

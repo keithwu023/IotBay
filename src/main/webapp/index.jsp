@@ -16,10 +16,14 @@
                 <i class="fas fa-bolt"></i> IoT Bay
             </a>
             <div class="nav-links">
-                <a href="index.jsp">Home</a>
+                <% if (session.getAttribute("userEmail") == null) { %>
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
+                <a href="staffLogin.jsp">Staff Login</a>
+                <% } else { %>
+                <a href="deviceList.jsp">Device List</a>
                 <a href="logout.jsp">Logout</a>
+                <% } %>
             </div>
         </nav>
     </div>
@@ -28,11 +32,23 @@
 <main class="container">
     <section class="hero">
         <% if (session.getAttribute("userEmail") != null) { %>
-        <h1>Welcome to IoT Bay, <%=session.getAttribute("userEmail")%></h1>
-        <%} else{ %>
+        <h1>Welcome to IoT Bay, <%= session.getAttribute("userEmail") %></h1>
+
+        <%
+            // Check if userType is stored in session
+            Object userObj = session.getAttribute("staffUser");
+            if (userObj != null) {
+                // This means user logged in as Staff
+        %>
+        <p>You are logged in as <strong>Staff</strong>.</p>
+        <% } else { %>
+        <p>You are logged in as <strong>User</strong>.</p>
+        <% } %>
+
+        <% } else { %>
         <h1>Welcome to IoT Bay</h1>
-        <%}%>
         <p>Your premier destination for IoT devices and smart technology solutions.</p>
+        <% } %>
     </section>
 </main>
 
