@@ -1,8 +1,6 @@
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBConnector {
     private Connection connection;
@@ -16,37 +14,38 @@ public class DBConnector {
             Class.forName("org.sqlite.JDBC");
             System.out.println("SQLite JDBC driver loaded");
         } catch (ClassNotFoundException e) {
-            // If driver class is not found, throw a runtime error
-            throw new RuntimeException("Failed to load SQLite JDBC driver", e);
+            throw new RuntimeException("Driver not found", e);
         }
 
-        // Path to the SQLite database file
-        String url = "jdbc:sqlite:/Users/darbysidharta/Documents/GitHub/IotBay/IotBay.db";
+        // Connect to SQLite database
+        String url = "jdbc:sqlite:/Users/kellywu/Desktop/IoTBay/AccessLog.db";
         try {
             // Establish connection to the database
             connection = DriverManager.getConnection(url);
-            connection.setAutoCommit(true); // Auto-commit each statement by default
-            System.out.println("Connected to database");
+            connection.setAutoCommit(true);
+            System.out.println("Connected to: " + url);
+
         } catch (SQLException e) {
-            // Print error and throw exception if connection fails
+            System.err.println("Connection failed:");
             e.printStackTrace();
             throw new RuntimeException("Failed to connect to database", e);
         }
     }
 
-    // Method to get the current database connection
+    // Get database connection
     public Connection getConnection() {
         return connection;
     }
 
-    // Method to close the connection when done
+    // Close database connection
     public void closeConnection() {
         if (connection != null) {
             try {
                 connection.close();
                 System.out.println("Connection closed");
             } catch (SQLException e) {
-                e.printStackTrace(); // Print any error during closing
+                System.err.println("Failed to close connection");
+                e.printStackTrace();
             }
         }
     }

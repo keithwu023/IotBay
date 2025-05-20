@@ -5,13 +5,13 @@ import java.sql.SQLException;
 
 public class DAO {
     private Connection connection;
-    private DBManager userManager;
+    private UserDBManager userManager;
     private DeviceDBManager deviceManager;
     private OrderDBManager orderManager;
 
     public DAO() throws SQLException {
         connection = new DBConnector().getConnection();
-        userManager = new DBManager(connection);           // your existing DBManager for users
+        userManager = new UserDBManager(connection);           // your existing DBManager for users
         deviceManager = new DeviceDBManager(connection);   // your DeviceDBManager for devices
         orderManager = new OrderDBManager(connection);
     }
@@ -20,7 +20,7 @@ public class DAO {
         return connection;
     }
 
-    public DBManager getUserManager() {
+    public UserDBManager getUserManager() {
         return userManager;
     }
 
