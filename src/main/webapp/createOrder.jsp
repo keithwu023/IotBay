@@ -23,6 +23,8 @@
                 <a href="orderlist.jsp">Order History</a>
                 <a href="logout.jsp">Logout</a>
                 <% } else { %>
+                <a href="index.jsp">Home</a>
+                <a href="orderlist.jsp">Order History</a>
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
                 <% } %>

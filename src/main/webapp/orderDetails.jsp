@@ -21,12 +21,15 @@
                 <i class="fas fa-bolt"></i> IoT Bay
             </a>
             <div class="nav-links">
+                <% if (session.getAttribute("user") != null) { %>
                 <a href="index.jsp">Home</a>
                 <a href="createOrder.jsp">Create Order</a>
                 <a href="orderlist.jsp">Order History</a>
-                <% if (session.getAttribute("userEmail") != null) { %>
                 <a href="logout.jsp">Logout</a>
                 <% } else { %>
+                <a href="createOrder.jsp">Create Order</a>
+                <a href="orderlist.jsp">Order History</a>
+                <a href="index.jsp">Home</a>
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
                 <% } %>
@@ -56,7 +59,6 @@
                 return;
             }
 
-            HttpSession session = request.getSession();
             String userEmail = (String) session.getAttribute("userEmail");
             String sessionId = (String) session.getAttribute("sessionId");
             if (sessionId == null) {
