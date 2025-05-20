@@ -18,9 +18,9 @@
                 <i class="fas fa-bolt"></i> IoT Bay
             </a>
             <div class="nav-links">
+                <% if (session.getAttribute("user") != null) { %>
                 <a href="index.jsp">Home</a>
                 <a href="orderlist.jsp">Order History</a>
-                <% if (session.getAttribute("userEmail") != null) { %>
                 <a href="logout.jsp">Logout</a>
                 <% } else { %>
                 <a href="login.jsp">Login</a>

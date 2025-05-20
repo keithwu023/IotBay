@@ -18,7 +18,7 @@ public class DBConnector {
         }
 
         // Connect to SQLite database
-        String url = "jdbc:sqlite:/Users/kellywu/Desktop/IoTBay/AccessLog.db";
+        String url = "jdbc:sqlite:/Users/night/OneDrive/Documents/GitHub/IoTBay/AccessLog.db";
         try {
             // Establish connection to the database
             connection = DriverManager.getConnection(url);
