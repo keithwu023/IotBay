@@ -62,7 +62,6 @@
 
         <%-- Fetch orders --%>
         <%
-            HttpSession session = request.getSession();
             String userEmail = (String) session.getAttribute("userEmail");
             String sessionId = (String) session.getAttribute("sessionId");
             if (sessionId == null) {
