@@ -31,6 +31,7 @@
   </div>
 </header>
 
+<%-- Order history --%>
 <div class="container" style="padding-top: 30px;">
   <div class="register-form">
     <h2>Order History</h2>
