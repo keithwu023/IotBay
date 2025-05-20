@@ -56,7 +56,7 @@ public class UpdateOrderServlet extends HttpServlet {
             if (!orderItems.isEmpty()) {
                 orderManager.updateOrder(order, orderItems);
                 request.setAttribute("success", "Order " + (status.equals("Saved") ? "updated" : "submitted") + " successfully!");
-                response.sendRedirect("orderList.jsp");
+                response.sendRedirect("orderlist.jsp");
             } else {
                 request.setAttribute("error", "No devices selected for the order.");
                 request.getRequestDispatcher("orderDetails.jsp?orderId=" + orderId).forward(request, response);

@@ -28,11 +28,11 @@ public class DeleteOrderServlet extends HttpServlet {
             }
 
             dao.close();
-            response.sendRedirect("orderList.jsp");
+            response.sendRedirect("orderlist.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("orderList.jsp").forward(request, response);
+            request.getRequestDispatcher("orderlist.jsp").forward(request, response);
         }
     }
 }

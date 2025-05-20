@@ -37,7 +37,7 @@
     <h2>Order History</h2>
 
     <%-- Search form --%>
-    <form method="get" action="orderList.jsp" style="margin-bottom: 30px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <form method="get" action="orderlist.jsp" style="margin-bottom: 30px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
       <label>
         Order Number:
         <input type="text" name="orderId" value="<%= request.getParameter("orderId") != null ? request.getParameter("orderId") : "" %>" class="input-group-input" style="padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; width: 220px;">

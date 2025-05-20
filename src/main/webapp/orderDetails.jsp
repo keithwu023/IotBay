@@ -19,7 +19,7 @@
       </a>
       <div class="nav-links">
         <a href="index.jsp">Home</a>
-        <a href="orderList.jsp">Order History</a>
+        <a href="orderlist.jsp">Order History</a>
         <a href="createOrder.jsp">Create Order</a>
         <% if (session.getAttribute("userEmail") != null) { %>
         <a href="logout.jsp">Logout</a>
@@ -52,7 +52,7 @@
       orderStmt.setString(2, userEmail);
       ResultSet orderRs = orderStmt.executeQuery();
       if (!orderRs.next()) {
-        response.sendRedirect("orderList.jsp");
+        response.sendRedirect("orderlist.jsp");
         return;
       }
       String status = orderRs.getString("Status");
@@ -115,7 +115,7 @@
     </form>
 
     <div class="form-footer">
-      <p><a href="orderList.jsp">Back to Order History</a></p>
+      <p><a href="orderlist.jsp">Back to Order History</a></p>
     </div>
   </div>
 </div>

@@ -53,7 +53,7 @@ public class CreateOrderServlet extends HttpServlet {
             if (!orderItems.isEmpty()) {
                 orderManager.createOrder(order, orderItems);
                 request.setAttribute("success", "Order " + (status.equals("Saved") ? "saved" : "submitted") + " successfully!");
-                response.sendRedirect("orderList.jsp");
+                response.sendRedirect("orderlist.jsp");
             } else {
                 request.setAttribute("error", "No devices selected for the order.");
                 request.getRequestDispatcher("createOrder.jsp").forward(request, response);

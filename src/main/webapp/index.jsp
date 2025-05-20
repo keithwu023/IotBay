@@ -21,10 +21,10 @@
                 <a href="register.jsp">Register</a>
                 <a href="staffLogin.jsp">Staff Login</a>
                 <a href="createOrder.jsp">Create Order</a>
-                <a href="orderList.jsp">Order History</a>
+                <a href="orderlist.jsp">Order History</a>
                 <% } else { %>
                 <a href="createOrder.jsp">Create Order</a>
-                <a href="orderList.jsp">Order History</a>
+                <a href="orderlist.jsp">Order History</a>
                 <a href="deviceList.jsp">Device List</a>
                 <a href="logout.jsp">Logout</a>
                 <% } %>

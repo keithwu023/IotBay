@@ -20,7 +20,7 @@
             <div class="nav-links">
                 <a href="index.jsp">Home</a>
                 <% if (session.getAttribute("userEmail") != null) { %>
-                <a href="orderList.jsp">Order History</a>
+                <a href="orderlist.jsp">Order History</a>
                 <a href="logout.jsp">Logout</a>
                 <% } else { %>
                 <a href="login.jsp">Login</a>
