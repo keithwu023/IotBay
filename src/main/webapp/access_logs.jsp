@@ -7,22 +7,66 @@
     <meta charset="UTF-8">
     <title>Access Log - IoT Bay</title>
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        form.form-group {
+            text-align: center;
+            margin: 20px;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 6px 12px;
+        }
+    </style>
+
 </head>
 <html>
 <body>
 <header>
     <div class="container">
         <nav>
-            <a href="index.jsp" class="logo"><i class="fas fa-bolt"></i> IoT Bay</a>
+            <i class="fas fa-bolt"></i> IoT Bay
             <div class="nav-links">
-                <a href="access_logs.jsp">Access Logs</a>
-                <a href="profile.jsp">Profile</a>
-                <a href="logout">Logout</a>
+                Access Logs
+                Profile
+                Logout
             </div>
         </nav>
     </div>
 </header>
-<%
+    <%
     User user = (User) session.getAttribute("user");
     if (user == null) {
         response.sendRedirect("login.jsp");
@@ -39,7 +83,7 @@
     <label for="date">Filter by Date:</label>
     <input type="date" name="date" id="date" value="<%= (filterDate != null ? filterDate : "") %>">
     <button type="submit">Search</button>
-    <a href="accesslogs"><button type="button">Clear</button></a>
+    <button type="button">Clear</button>
 </form>
 
 <table>

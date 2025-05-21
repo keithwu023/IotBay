@@ -13,19 +13,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @WebServlet("/CreateOrderServlet")
 public class CreateOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
-        String userEmail = (String) session.getAttribute("userEmail");
-        String sessionId = (String) session.getAttribute("sessionId");
-        if (sessionId == null) {
-            sessionId = UUID.randomUUID().toString();
-            session.setAttribute("sessionId", sessionId);
-        }
+        String userEmail = (String) request.getSession().getAttribute("userEmail");
         String status = "save".equals(action) ? "Saved" : "Submitted";
 
         try {
@@ -34,10 +27,11 @@ public class CreateOrderServlet extends HttpServlet {
 
             Order order = new Order();
             order.setUserEmail(userEmail);
-            order.setSessionId(sessionId);
             order.setStatus(status);
 
             List<OrderItem> orderItems = new ArrayList<>();
+
+            // Get device amount from parameter
             for (String param : request.getParameterMap().keySet()) {
                 if (param.startsWith("quantity_")) {
                     String deviceIdStr = param.substring(9);
@@ -59,7 +53,7 @@ public class CreateOrderServlet extends HttpServlet {
             if (!orderItems.isEmpty()) {
                 orderManager.createOrder(order, orderItems);
                 request.setAttribute("success", "Order " + (status.equals("Saved") ? "saved" : "submitted") + " successfully!");
-                request.getRequestDispatcher("createOrder.jsp").forward(request, response);
+                response.sendRedirect("orderlist.jsp");
             } else {
                 request.setAttribute("error", "No devices selected for the order.");
                 request.getRequestDispatcher("createOrder.jsp").forward(request, response);
@@ -69,10 +63,6 @@ public class CreateOrderServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("createOrder.jsp").forward(request, response);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Invalid quantity input.");
             request.getRequestDispatcher("createOrder.jsp").forward(request, response);
         }
     }

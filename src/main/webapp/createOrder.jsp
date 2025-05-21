@@ -18,13 +18,11 @@
                 <i class="fas fa-bolt"></i> IoT Bay
             </a>
             <div class="nav-links">
-                <% if (session.getAttribute("user") != null) { %>
                 <a href="index.jsp">Home</a>
+                <% if (session.getAttribute("userEmail") != null) { %>
                 <a href="orderlist.jsp">Order History</a>
                 <a href="logout.jsp">Logout</a>
                 <% } else { %>
-                <a href="index.jsp">Home</a>
-                <a href="orderlist.jsp">Order History</a>
                 <a href="login.jsp">Login</a>
                 <a href="register.jsp">Register</a>
                 <% } %>
@@ -37,14 +35,9 @@
     <div class="register-form">
         <h2>Create New Order</h2>
 
-        <%-- Display success or error messages --%>
-        <% if (request.getAttribute("success") != null) { %>
-        <div class="success-message" style="color: green; font-weight: bold; margin-bottom: 20px;">
-            <i class="fas fa-check-circle"></i> <%= request.getAttribute("success") %>
-        </div>
-        <% } %>
+        <%-- Display error message --%>
         <% if (request.getAttribute("error") != null) { %>
-        <div class="error-message" style="color: red; font-weight: bold; margin-bottom: 20px;">
+        <div class="error-message">
             <i class="fas fa-exclamation-circle"></i> <%= request.getAttribute("error") %>
         </div>
         <% } %>
@@ -53,7 +46,7 @@
         <%
             DBConnector db = new DBConnector();
             Connection conn = db.getConnection();
-            String query = "SELECT * FROM Devices WHERE Quantity > 0";
+            String query = "SELECT * FROM DEVICES WHERE Quantity > 0";
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
         %>
