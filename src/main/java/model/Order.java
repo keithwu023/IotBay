@@ -6,10 +6,10 @@ import java.util.Date;
 public class Order implements Serializable {
     private int orderId;
     private String userEmail;
+    private String sessionId;
     private Date orderDate;
     private String status;
 
-    // Getters and setters
     public int getOrderId() {
         return orderId;
     }
@@ -24,6 +24,14 @@ public class Order implements Serializable {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public Date getOrderDate() {
